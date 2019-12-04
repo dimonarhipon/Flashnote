@@ -1,29 +1,33 @@
 import React from 'react';
+import clases from './FlashNote.module.css';
 
 let FlashNote = () => {
 	return (
-		<div className="FlashNote">
-			<div className="column" draggable="true">
-				<p className="column-header" contenteditable="true">
-					Заголовок 1
-				</p>
-				<div data-notes>
-					<div className="note" draggable="true">
-						Задача 1.1
+		<div className={clases.container}>
+			<div className={clases.row}>
+				<div className={clases.column} draggable="true">
+					<p className={clases.column_header} contenteditable="true">
+						Заголовок 1
+					</p>
+					<div data-notes>
+						<div className={clases.note} draggable="true">
+							Задача 1.1
+						</div>
+						<div className={clases.note} draggable="true">
+							Задача 1.2
+						</div>
+						<div className={clases.note} draggable="true">
+							Задача 1.3
+						</div>
 					</div>
-					<div className="note" draggable="true">
-						Задача 1.2
-					</div>
-					<div className="note" draggable="true">
-						Задача 1.3
-					</div>
+					<p className={clases.footer}>
+						<span className={clases.action}>
+							+ Добавить карточку
+						</span>
+					</p>
 				</div>
-				<p className="column-footer">
-					<span className="action">
-						+ Добавить карточку
-					</span>
-				</p>
 			</div>
+
 		</div>
 	);
 }
