@@ -2,6 +2,9 @@ import React from 'react';
 import clases from './FlashNote.module.css';
 
 let FlashNote = () => {
+
+	document.querySelector('.column')
+
 	return (
 		<div className={clases.container}>
 			<div className={clases.row}>
@@ -20,11 +23,11 @@ let FlashNote = () => {
 							Задача 1.3
 						</div>
 					</div>
-					<p className={clases.footer}>
-						<span className={clases.action}>
+					<div className={clases.footer}>
+						<button type="button" className={clases.addNode}>
 							+ Добавить карточку
-						</span>
-					</p>
+						</button>
+					</div>
 				</div>
 			</div>
 
