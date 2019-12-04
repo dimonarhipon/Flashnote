@@ -10,13 +10,13 @@ let FlashNote = () => {
 						Заголовок 1
 					</p>
 					<div data-notes>
-						<div className={clases.note} draggable="true">
+						<div className={clases.note} draggable="true" contenteditable="true">
 							Задача 1.1
 						</div>
-						<div className={clases.note} draggable="true">
+						<div className={clases.note} draggable="true" contenteditable="true">
 							Задача 1.2
 						</div>
-						<div className={clases.note} draggable="true">
+						<div className={clases.note} draggable="true" contenteditable="true">
 							Задача 1.3
 						</div>
 					</div>
