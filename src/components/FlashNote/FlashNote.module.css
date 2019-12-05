@@ -1,4 +1,10 @@
 
+.pagination {
+    margin-top: 20px;
+}
+.selectedPage {
+    font-weight: bold;
+}
 .container {
     display: flex;
     flex-direction: row;
