@@ -1,37 +1,67 @@
 import React from 'react';
+import notes from '../../redux/store.js'
 import clases from './FlashNote.module.css';
+import Note from '../Note/Note.js';
+import * as axios from 'axios';
 
-let FlashNote = () => {
 
-	document.querySelector('.column')
+class FlashNote extends React.Component {
+	state = {
+		notes: notes
+	};
 
-	return (
-		<div className={clases.container}>
-			<div className={clases.row}>
-				<div className={clases.column} draggable="true">
-					<p className={clases.column_header} contenteditable="true">
-						Заголовок 1
-					</p>
-					<div data-notes>
-						<div className={clases.note} draggable="true" contenteditable="true">
-							Задача 1.1
-						</div>
-						<div className={clases.note} draggable="true" contenteditable="true">
-							Задача 1.2
-						</div>
-						<div className={clases.note} draggable="true" contenteditable="true">
-							Задача 1.3
-						</div>
-					</div>
-					<div className={clases.footer}>
-						<button type="button" className={clases.addNode}>
-							+ Добавить карточку
+	addNote = () => {
+		this.setState(  
+			[...notes, {id: '', title: '', message: ''}]
+		)	
+	};
+
+	deleteNote = (id) => {
+
+		this.setState(  ({notes}) => ({
+			notes: notes.filter(el => el.id !== id)
+		}))
+	};
+
+	render() {
+		let { notes } = this.state;
+		let pagesCount = this.totalNotesCount / this.props.pageSize;
+		let pages = [];
+		for (let i = 1; i < pagesCount; i++) {
+			pages.push(i);
+		}
+
+		return (
+			<div>
+				
+				<div className={clases.pagination}>
+					{ pages.map( p => {
+						return <button className={this.props.currentPage === p}>
+							{p}
 						</button>
+						{/*&& style.selectedPage*/}
+					})}
+				</div>
+				<div className={clases.container}>
+					<div className={clases.row}>
+						<div className={clases.column} draggable="true">
+							<p className={clases.column_header} contenteditable="true">
+								Заголовок 1
+							</p>
+							<div data-notes>
+								{notes.map(el => <Note deleteNote={this.deleteNote} {...el }/>)}
+							</div>
+							<div className={clases.footer}>
+								<button onClick={this.addNote} className={clases.addNote}>
+									+ Добавить карточку
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-		</div>
-	);
+		)
+	}
 }
+
 export default FlashNote;
