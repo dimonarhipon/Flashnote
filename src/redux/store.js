@@ -9,4 +9,8 @@ const notes = [
 	{id: 8, title: 'Заметка №8',  message: 'Это текст заметки №8' },
 ];
 
+let pageSize: 5;
+let totalUserCount: 20;
+let currentPage: 2;
+
 export default notes;
