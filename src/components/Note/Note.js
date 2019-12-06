@@ -24,17 +24,24 @@ import PropTypes from 'prop-types';
 // 	}	
 // }
 
-const Note = ({ message }) => (
+const Note = ({ message, deleteNote, id }) => (
 	<li className="note-item">
 		<span>{message}</span>
+		<button className={clases.note_delete} onClick={ () => deleteNote(id)}>
+			x
+		</button>
 	</li>
-)
+);
 
 Note.propTypes = {
 	message: PropTypes.string,
+	deleteNote: PropTypes.func, 
+	id: PropTypes.string,
 }
 Note.defaultProps = {
 	message: '',
+	deleteNote: () => {},
+	id: ''
 }
 
 
