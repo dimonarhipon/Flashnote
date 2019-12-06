@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import FlashNote from './components/FlashNote/FlashNote.js';
+import FlashNoteContainer from './components/FlashNote/FlashNote.js';
 import {BrowserRouter, Route} from "react-router-dom";
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
   		<BrowserRouter>
 		    <div className="App-wrapper">
 		    	<Route path=''
-		    			render={ () => <FlashNote /> }/>
+		    			render={ () => <FlashNoteContainer /> }/>
 		    </div>
 		</BrowserRouter>
  	);
