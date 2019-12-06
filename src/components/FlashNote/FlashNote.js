@@ -30,16 +30,15 @@ class FlashNote extends React.Component {
 		for (let i = 1; i < pagesCount; i++) {
 			pages.push(i);
 		}
-
-		return (
-			<div>
-				
+// && style.selectedPage
+// {{this.state.notes}}
+		return ( <div>
 				<div className={clases.pagination}>
 					{ pages.map( p => {
 						return <button className={this.props.currentPage === p}>
 							{p}
 						</button>
-						{/*&& style.selectedPage*/}
+						
 					})}
 				</div>
 				<div className={clases.container}>
@@ -48,8 +47,9 @@ class FlashNote extends React.Component {
 							<p className={clases.column_header} contenteditable="true">
 								Заголовок 1
 							</p>
-							<div data-notes>
-								{notes.map(el => <Note deleteNote={this.deleteNote} {...el }/>)}
+							<div>
+								{notes.map(el => 
+									<Note deleteNote={this.deleteNote} {...el }/>)}
 							</div>
 							<div className={clases.footer}>
 								<button onClick={this.addNote} className={clases.addNote}>
@@ -60,7 +60,7 @@ class FlashNote extends React.Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
