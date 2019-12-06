@@ -38,7 +38,6 @@ class FlashNote extends React.Component {
 						return <button className={this.props.currentPage === p}>
 							{p}
 						</button>
-						
 					})}
 				</div>
 				<div className={clases.container}>
