@@ -1,12 +1,21 @@
 
-
-import {createStore} from 'redux'; 
+import {save} from 'redux-localstorage-simple';
+import {createStore, compose, applyMiddleware} from 'redux'; 
 import rootReducer from './flashnote-reducer.js'; 
 
+const composeEnhancers = 
+	process.env.NODE_ENV !== 'production' &&
+	typeof window === 'object' &&
+	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+
 const configureStore = preloadedState => (
-	createStore (
+	createStore(
 		rootReducer,
 		preloadedState,
+		composeEnhancers(
+			applyMiddleware(save({ namespace: 'note-list' }))
+		),
 	)
 );
 
