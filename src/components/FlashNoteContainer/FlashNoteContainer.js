@@ -32,7 +32,7 @@ class FlashNoteContainer extends Component {
 
 	render() {
 		const {noteText} = this.state;
-		const {notes} = this.prop;
+		const {notes, deleteNote} = this.prop;
 		const isNotesExist = notes && notes.length > 0;
 
 		return (
@@ -40,7 +40,7 @@ class FlashNoteContainer extends Component {
 				<NoteInput  onChange={this.handleInputChange} 
 							value={noteText}
 							onKeyPress={this.addNote} />
-				{isNotesExist && <NoteList notesList={notes} />}
+				{isNotesExist && <NoteList notesList={notes} deleteNote={deleteNote}/>}
 			</div>
 		)
 	}
