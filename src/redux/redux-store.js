@@ -1,8 +1,8 @@
-import {combineReducers, createStore} from "redux";
+import { combineReducers, createStore } from "redux";
 import flashnoteReducer from "./flashnote-reducer";
 
-let reducers = combineReducers ({
-	flashnotePage: flashnoteReducer
+let reducers = combineReducers({
+  flashnoteReducer: flashnoteReducer
 });
 
 let store = createStore(reducers);

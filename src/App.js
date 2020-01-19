@@ -1,18 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import FlashNote from './components/FlashNote/FlashNote.js';
-import {BrowserRouter, Route} from "react-router-dom";
+import React from "react";
+import "./App.css";
+import FlashNoteCont from "./components/FlashNote/FlashNote.js";
 
 const App = () => {
-  	return (
-  		<BrowserRouter>
-		    <div className="App-wrapper">
-		    	<Route path=''
-		    			render={ () => <FlashNote /> }/>
-		    </div>
-		</BrowserRouter>
- 	);
-}
+  return (
+    <div className="App-wrapper">
+      <FlashNoteCont />}
+    </div>
+  );
+};
 
 export default App;
