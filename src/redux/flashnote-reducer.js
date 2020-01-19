@@ -1,14 +1,17 @@
 const ADD_NOTE = "ADD-NOTE";
 const DELETE_NOTE = "DELETE-NOTE";
-const UPDATE_NOTE_TEXT = "UPDATE-NOTE-TEXT";
-const SET_NOTES = "SET-NOTES";
+const CHANGE_TITLE_NOTE = "CHANGE-TITLE-NOTE";
+const CHANGE_TEXT_NOTE = "TEXT-NOTE";
+const UPDATE_TEXT_NOTE = "UPDATE-TEXT-NOTE";
 
 let initialState = {
   notes: [
-    { id: 1, title: "Заметка №1", message: "Это текст заметки №1" },
-    { id: 20, title: "Заметка №20", message: "Это текст заметки №20" }
+    { id: 1, title: "Заметка №1", text: "Это текст заметки №1" },
+    { id: 2, title: "Заметка №2", text: "Это текст заметки №2" }
   ],
-  newNoteText: ""
+  changeTitleNote: "Заголовок",
+  changeTextNote: "Текст",
+  counter: 3
 };
 
 const flashnoteReducer = (state = initialState, action) => {
@@ -16,27 +19,33 @@ const flashnoteReducer = (state = initialState, action) => {
     case ADD_NOTE:
       return {
         ...state,
-        notes: [...state.posts],
-        newNoteText: ""
+        notes: [
+          ...state.notes,
+          {
+            id: ++state.counter,
+            title: state.changeTitleNote,
+            text: state.changeTextNote
+          }
+        ],
+        changeTitleNote: "",
+        changeTextNote: ""
       };
 
     case DELETE_NOTE:
       return {
         ...state,
-        notes: [...state.posts],
-        newNoteText: ""
+        notes: [...state.notes.filter(notes => notes.id !== action.id)]
       };
-
-    // case UPDATE_NOTE_TEXT:
-    // 	let stateCopy = {
-    // 		...state,
-    // 		notes: state.notes.map( notes => {
-    // 			if (note.id === action.noteId) {
-    // 				return ...state
-    // 			}
-    // 			return notes;
-    // 		})
-    // 	}
+    case CHANGE_TITLE_NOTE:
+      return {
+        ...state,
+        changeTitleNote: action.title
+      };
+    case CHANGE_TEXT_NOTE:
+      return {
+        ...state,
+        changeTextNote: action.text
+      };
 
     // case SET_NOTES: {
     //   return { ...state, notes: [...state.notes, ...action.note] };
@@ -46,13 +55,22 @@ const flashnoteReducer = (state = initialState, action) => {
   }
 };
 
-export const addActionCreator = noteId => ({ type: ADD_NOTE, noteId });
-export const deleteActionCreator = noteId => ({ type: DELETE_NOTE, noteId });
-export const setNotesActionCreator = notes => ({ type: SET_NOTES, notes });
-
-export const updateActionCreator = text => ({
-  type: UPDATE_NOTE_TEXT,
-  newText: text
+export const addNoteAC = () => ({
+  type: ADD_NOTE
 });
-
+export const deleteNoteAC = id => ({
+  type: DELETE_NOTE,
+  id
+});
+export const changeTitleNoteAC = title => ({
+  type: CHANGE_TITLE_NOTE,
+  title
+});
+export const changeTextNoteAC = text => ({
+  type: CHANGE_TEXT_NOTE,
+  text
+});
+export const updateNoteAC = () => ({
+  type: UPDATE_TEXT_NOTE
+});
 export default flashnoteReducer;
