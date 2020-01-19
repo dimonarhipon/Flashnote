@@ -1,31 +1,35 @@
-import React from 'react';
-import Note from '../Note/Note.js';
-import {connect} from "react-redux";
-import {addActionCreator, deleteActionCreator, setNotesActionCreator, updateActionCreator} from "../../../flashnote-reducer.js"
+import { connect } from "react-redux";
+import {
+  addNoteAC,
+  deleteNoteAC,
+  changeTextNoteAC,
+  changeTitleNoteAC
+  // updateNoteAC
+} from "../../redux/flashnote-reducer.js";
+import FlashNote from "./FlashNote.js";
 
-let mapStateToProps = (state) => {
-	return {
-		notes: state.flashnotePage.notes,
-		pageSize: state.flashnotePage.pageSize,
-		totalNotesCount: state.flashnotePage.totalNotesCount,
-		currentPage: state.notesPage.currentPage
-	}
-}
-let mapDishpatchToProps = (dispatch) => {
-	return {
-		update: (noteId) => {
-			dispatch(updateActionCreator(noteId))
-		}
-		add: (noteId) => {
-			dispatch(addActrionCreator(noteId))
-		}
-		delete: (noteId) => {
-			dispatch(deleteActrionCreator(noteId))
-		}
-		setNotes: (notes) => {
-			dispatch(setNotes)
-		}
-	}
-}
+let mapStateToProps = state => {
+  return {
+    Title: state.flashnoteReducer.changeTitleNote,
+    Text: state.flashnoteReducer.changeTextNote,
+    notes: state.flashnoteReducer.notes
+  };
+};
+let mapDispatchToProps = dispatch => {
+  return {
+    addNote: () => {
+      dispatch(addNoteAC());
+    },
+    deleteNote: id => {
+      dispatch(deleteNoteAC(id));
+    },
+    changeTitle: title => {
+      dispatch(changeTitleNoteAC(title));
+    },
+    changeText: text => {
+      dispatch(changeTextNoteAC(text));
+    }
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps) (Notes);
+export default connect(mapStateToProps, mapDispatchToProps)(FlashNote);
