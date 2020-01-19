@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import FlashNoteCont from "./components/FlashNote/FlashNote.js";
+import FlashNoteContainer from "./components/FlashNote/FlashNoteContainer.js";
 
 const App = () => {
   return (
     <div className="App-wrapper">
-      <FlashNoteCont />}
+      <FlashNoteContainer />
     </div>
   );
 };
