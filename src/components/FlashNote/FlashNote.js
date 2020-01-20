@@ -15,8 +15,9 @@ let FlashNote = props => {
     let text = e.target.value;
     props.changeText(text);
   };
-  let removeNote = id => {
-    props.deleteNote(id);
+  let updateText = e => {
+    let text = e.target.value;
+    props.updateNoteText(text);
   };
   return (
     <div>
@@ -50,7 +51,11 @@ let FlashNote = props => {
                   key={id}
                   title={title}
                   text={text}
-                  removeNote={removeNote}
+                  deleteNote={props.deleteNote}
+                  editMode={props.editMode}
+                  activeEditMode={props.activeEditMode}
+                  deactiveEditMode={props.deactiveEditMode}
+                  updateText={updateText}
                 />
               ))}
             </div>
