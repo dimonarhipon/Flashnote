@@ -3,8 +3,10 @@ import {
   addNoteAC,
   deleteNoteAC,
   changeTextNoteAC,
-  changeTitleNoteAC
-  // updateNoteAC
+  changeTitleNoteAC,
+  activeEditModeAC,
+  deactiveEditModeAC,
+  updateNoteTextAC
 } from "../../redux/flashnote-reducer.js";
 import FlashNote from "./FlashNote.js";
 
@@ -12,7 +14,8 @@ let mapStateToProps = state => {
   return {
     Title: state.flashnoteReducer.changeTitleNote,
     Text: state.flashnoteReducer.changeTextNote,
-    notes: state.flashnoteReducer.notes
+    notes: state.flashnoteReducer.notes,
+    editMode: state.flashnoteReducer.editMode
   };
 };
 let mapDispatchToProps = dispatch => {
@@ -28,6 +31,15 @@ let mapDispatchToProps = dispatch => {
     },
     changeText: text => {
       dispatch(changeTextNoteAC(text));
+    },
+    // updateNoteText: (text, id) => {
+    //   dispatch(updateNoteTextAC(text, id));
+    // },
+    activeEditMode: () => {
+      dispatch(activeEditModeAC());
+    },
+    deactiveEditMode: () => {
+      dispatch(deactiveEditModeAC());
     }
   };
 };
