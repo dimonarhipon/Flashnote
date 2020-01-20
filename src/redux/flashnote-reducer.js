@@ -3,6 +3,8 @@ const DELETE_NOTE = "DELETE-NOTE";
 const CHANGE_TITLE_NOTE = "CHANGE-TITLE-NOTE";
 const CHANGE_TEXT_NOTE = "TEXT-NOTE";
 const UPDATE_TEXT_NOTE = "UPDATE-TEXT-NOTE";
+const ACTIVE_EDIT_MODE = "ACTIVE-EDIT-MODE";
+const DEACTIVE_EDIT_MODE = "DEACTIVE-EDIT-MODE";
 
 let initialState = {
   notes: [
@@ -11,7 +13,8 @@ let initialState = {
   ],
   changeTitleNote: "Заголовок",
   changeTextNote: "Текст",
-  counter: 3
+  counter: 3,
+  editMode: false
 };
 
 const flashnoteReducer = (state = initialState, action) => {
@@ -37,19 +40,35 @@ const flashnoteReducer = (state = initialState, action) => {
         notes: [...state.notes.filter(notes => notes.id !== action.id)]
       };
     case CHANGE_TITLE_NOTE:
+      let Idtitle = id.action;
+      debugger;
       return {
         ...state,
-        changeTitleNote: action.title
+        changeTitleNote: [...(state.notes[Idtitle].title = action.title)]
       };
     case CHANGE_TEXT_NOTE:
+      let newId = id.action;
+      debugger;
       return {
         ...state,
-        changeTextNote: action.text
+        changeTextNote: [...(state.notes[newId].title = action.text)]
       };
-
-    // case SET_NOTES: {
-    //   return { ...state, notes: [...state.notes, ...action.note] };
-    // }
+    case UPDATE_TEXT_NOTE:
+      return {
+        ...state,
+        updateText: action.text,
+        notes: [...state.notes]
+      };
+    case ACTIVE_EDIT_MODE:
+      return {
+        ...state,
+        editMode: true
+      };
+    case DEACTIVE_EDIT_MODE:
+      return {
+        ...state,
+        editMode: false
+      };
     default:
       return state;
   }
@@ -62,15 +81,25 @@ export const deleteNoteAC = id => ({
   type: DELETE_NOTE,
   id
 });
-export const changeTitleNoteAC = title => ({
+export const changeTitleNoteAC = (title, id) => ({
   type: CHANGE_TITLE_NOTE,
-  title
+  title,
+  id
 });
-export const changeTextNoteAC = text => ({
+export const changeTextNoteAC = (text, id) => ({
   type: CHANGE_TEXT_NOTE,
-  text
+  text,
+  id
 });
-export const updateNoteAC = () => ({
-  type: UPDATE_TEXT_NOTE
+export const activeEditModeAC = () => ({
+  type: ACTIVE_EDIT_MODE
+});
+export const deactiveEditModeAC = () => ({
+  type: DEACTIVE_EDIT_MODE
+});
+export const updateNoteTextAC = (text, id) => ({
+  type: UPDATE_TEXT_NOTE,
+  text,
+  id
 });
 export default flashnoteReducer;
