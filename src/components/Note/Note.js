@@ -5,6 +5,7 @@ let Note = props => {
   debugger;
   return (
     <div>
+      <h1 className={clases.heading}>{props.title}</h1>
       <div className={clases.note_wrap}>
         <button
           className={clases.note_delete}
@@ -14,7 +15,6 @@ let Note = props => {
         >
           Х
         </button>
-        <h2 className={clases.note}>{props.title}</h2>
         {props.editMode ? (
           <input
             id={props.id}

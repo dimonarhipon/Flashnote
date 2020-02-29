@@ -28,7 +28,7 @@ let FlashNote = props => {
         <div className={clases.row}>
           <div className={clases.column}>
             <input
-              className={clases.note}
+              className={clases.heading}
               type="text"
               value={props.Title}
               onChange={changeTitle}

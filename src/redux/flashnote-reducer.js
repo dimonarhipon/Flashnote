@@ -11,7 +11,7 @@ let initialState = {
     { id: 1, title: "Заметка №1", text: "Это текст заметки №1" },
     { id: 2, title: "Заметка №2", text: "Это текст заметки №2" }
   ],
-  changeTitleNote: "Заголовок",
+  changeTitleNote: "Нажми для изменения",
   changeTextNote: "Текст",
   counter: 3,
   editMode: false
@@ -40,18 +40,18 @@ const flashnoteReducer = (state = initialState, action) => {
         notes: [...state.notes.filter(notes => notes.id !== action.id)]
       };
     case CHANGE_TITLE_NOTE:
-      let Idtitle = id.action;
+      // let Idtitle = id.action;
       debugger;
       return {
         ...state,
-        changeTitleNote: [...(state.notes[Idtitle].title = action.title)]
+        changeTitleNote: [...(state.notes[1].title = action.title)]
       };
     case CHANGE_TEXT_NOTE:
-      let newId = id.action;
+      // let newId = id.action;
       debugger;
       return {
         ...state,
-        changeTextNote: [...(state.notes[newId].title = action.text)]
+        changeTextNote: [...(state.notes[1].title = action.text)]
       };
     case UPDATE_TEXT_NOTE:
       return {

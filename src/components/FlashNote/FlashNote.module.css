@@ -1,3 +1,11 @@
+.heading {
+  border: none;
+  margin-bottom: 10px;
+  margin-right: -50px;
+  background-color: #f1f1f1;
+  font-size: 18px;
+  font-weight: bold;
+}
 .pagination {
   margin-top: 20px;
 }
